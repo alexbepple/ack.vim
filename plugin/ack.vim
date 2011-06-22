@@ -21,15 +21,16 @@ if !exists("g:ack_list_height")
     let g:ack_list_height=""
 endif
 
-function! s:Ack:OpenListCoreCommand(ack_cmd)
+function! ack#OpenListCoreCommand(ack_cmd)
     if a:ack_cmd =~# '^l'
         return "lopen"
     endif
     return "copen"
 endfunction
 
-function! s:Ack:OpenListCommand(ack_cmd)
-    return "botright " . s:Ack:OpenListCoreCommand(a:ack_cmd) . " " . g:ack_list_height
+function! ack#OpenListCommand(ack_cmd)
+    let l:position = "botright"
+    return join([l:position, ack#OpenListCoreCommand(a:ack_cmd), g:ack_list_height])
 endfunction
 
 function! s:Ack(cmd, args)
@@ -61,7 +62,7 @@ function! s:Ack(cmd, args)
         let &grepformat=grepformat_bak
     endtry
 
-    silent execute s:Ack:OpenListCommand(a:cmd)
+    silent execute ack#OpenListCommand(a:cmd)
 
     " TODO: Document this!
     exec "nnoremap <silent> <buffer> q :ccl<CR>"
