@@ -1,22 +1,9 @@
-" NOTE: You must, of course, install the ack script
-"       in your path.
-" On Debian / Ubuntu:
-"   sudo apt-get install ack-grep
-" On your vimrc:
-"   let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-"
-" With MacPorts:
-"   sudo port install p5-app-ack
-
-" Location of the ack utility
 if !exists("g:ackprg")
 	let g:ackprg="ack -H --nocolor --nogroup --column"
 endif
-
 if !exists("g:ackdir")
     let g:ackdir="."
 endif
-
 if !exists("g:ack_list_height")
     let g:ack_list_height=""
 endif
