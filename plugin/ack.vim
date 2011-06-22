@@ -13,6 +13,10 @@ if !exists("g:ackprg")
 	let g:ackprg="ack -H --nocolor --nogroup --column"
 endif
 
+if !exists("g:ackdir")
+    let g:ackdir="."
+endif
+
 function! s:Ack(cmd, args)
     redraw
     echo "Searching ..."
@@ -36,7 +40,7 @@ function! s:Ack(cmd, args)
     try
         let &grepprg=g:ackprg
         let &grepformat=g:ackformat
-        silent execute a:cmd . " " . l:grepargs
+        silent execute a:cmd . " " . l:grepargs . " " . g:ackdir
     finally
         let &grepprg=grepprg_bak
         let &grepformat=grepformat_bak
