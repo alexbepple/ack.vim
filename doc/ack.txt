@@ -59,3 +59,13 @@ Example:
     let g:ackdir='~/foo'
 
 Sets directory where ack will search. Set to current directory by default. If you set this and specify a directory in the command, both will be searched.
+
+
+*g:ack_list_height*
+
+Example:
+    let g:ack_list_height=40
+
+Specifies the height of the split with the matches. 
+
+This will only take effect when a new split for the matches is created.

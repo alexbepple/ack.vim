@@ -17,6 +17,10 @@ if !exists("g:ackdir")
     let g:ackdir="."
 endif
 
+if !exists("g:ack_list_height")
+    let g:ack_list_height=""
+endif
+
 function! s:Ack(cmd, args)
     redraw
     echo "Searching " . g:ackdir . " ..."
@@ -47,9 +51,9 @@ function! s:Ack(cmd, args)
     endtry
 
     if a:cmd =~# '^l'
-        botright lopen
+        silent execute "botright lopen" . " " . g:ack_list_height
     else
-        botright copen
+        silent execute "botright copen" . " " . g:ack_list_height
     endif
 
     " TODO: Document this!
