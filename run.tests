@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# The trailing "." adds the current dir to the runtimepath.
+./test/vspec/bin/vspec test/* .
