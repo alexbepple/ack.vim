@@ -19,7 +19,7 @@ endif
 
 function! s:Ack(cmd, args)
     redraw
-    echo "Searching ..."
+    echo "Searching " . g:ackdir . " ..."
 
     " If no pattern is provided, search for the word under the cursor
     if empty(a:args)
