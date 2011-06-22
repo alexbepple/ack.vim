@@ -21,6 +21,17 @@ if !exists("g:ack_list_height")
     let g:ack_list_height=""
 endif
 
+function! s:Ack:OpenListCoreCommand(ack_cmd)
+    if a:ack_cmd =~# '^l'
+        return "lopen"
+    endif
+    return "copen"
+endfunction
+
+function! s:Ack:OpenListCommand(ack_cmd)
+    return "botright " . s:Ack:OpenListCoreCommand(a:ack_cmd) . " " . g:ack_list_height
+endfunction
+
 function! s:Ack(cmd, args)
     redraw
     echo "Searching " . g:ackdir . " ..."
@@ -50,11 +61,7 @@ function! s:Ack(cmd, args)
         let &grepformat=grepformat_bak
     endtry
 
-    if a:cmd =~# '^l'
-        silent execute "botright lopen" . " " . g:ack_list_height
-    else
-        silent execute "botright copen" . " " . g:ack_list_height
-    endif
+    silent execute s:Ack:OpenListCommand(a:cmd)
 
     " TODO: Document this!
     exec "nnoremap <silent> <buffer> q :ccl<CR>"
