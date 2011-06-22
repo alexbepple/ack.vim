@@ -49,3 +49,13 @@ a line in this window will open the file, and place the cursor on the matching
 line.
 
 See http://betterthangrep.com/ for more information.
+
+
+GLOBAL SETTINGS               *ack-global-settings*
+
+*g:ackdir* 
+
+Example:
+    let g:ackdir='~/foo'
+
+Sets directory where ack will search. Set to current directory by default. If you set this and specify a directory in the command, both will be searched.
